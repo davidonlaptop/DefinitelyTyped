@@ -1,4 +1,4 @@
-// Type definitions for hjson 2.4
+// Type definitions for hjson 3.1.2
 // Project: https://github.com/hjson/hjson-js, http://hjson.org
 // Definitions by: Mark van Straten <https://github.com/crunchie84>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
@@ -16,6 +16,10 @@ export interface SerializeOptions {
    * keep white space. See parse.
    */
   keepWsc?: boolean;
+  /**
+   * will try to fit objects/arrays onto one line. Default 0 (off).
+   */
+  condense?: number;
   /**
    * makes braces appear on the same line as the key name. Default false.
    */
@@ -60,6 +64,21 @@ export interface SerializeOptions {
 }
 
 /*~ If this module has methods, declare them as functions like so.
- */
+*/
 export function parse(text: string, options?: DeserializeOptions): any;
+
+/**
+ * This method produces Hjson text from a JavaScript value.
+ */
 export function stringify(value: any, options?: SerializeOptions): string;
+
+/**
+ * Gets the stringify EOL sequence ('\n' or '\r\n').
+ * When running with node.js this defaults to os.EOL.
+ */
+export function endOfLine(): string;
+
+/**
+ * Sets the stringify EOL sequence ('\n' or '\r\n').
+ */
+export function setEndOfLine(eol: string): void;
